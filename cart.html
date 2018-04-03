@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <title>Drink Order App</title>
+
+	  <!-- CSS  -->
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+
+    <body>
+    	<nav class="red" role="navigation">
+		    <div class="nav-wrapper container">
+		      <ul id="nav-mobile" class="sidenav">
+		        <li class="red white-text"><a href="index.html" class="white-text">Ma Djé Aha</a></li>
+		        <li><a href="cart.html"> <i class="material-icons md-light">shopping_cart</i> Panier de Commandes</a></li>
+		        <li><a href="cart.html"> <i class="material-icons md-light">add</i> Ajouter une commande</a></li>
+		      </ul>
+		      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons md-light">menu</i></a>
+		      <a href="cart.html"><i class="material-icons md-light right">shopping_cart</i></a>
+		    </div>
+		</nav>
+
+		<div id="index-banner" class="parallax-container">
+		    <div class="section no-pad-bot">
+		      <div class="container">
+		        <div class="row center ">
+		        	<h5 class="md-title">Liste des breuvages</h5>
+		        </div>
+		        <br><br>
+		       
+		        <div class="row center ">
+				    <table>
+				        <thead>
+				          <tr>
+				              <th>Breuvage</th>
+				              <th>Quantité</th>
+				              <th>Prix</th>
+				          </tr>
+				        </thead>
+
+				        <tbody>
+				          <tr>
+				            <td>Alvin</td>
+				            <td>Eclair</td>
+				            <td>$0.87</td>
+				            <td><a href="order.html" title="Modifier"><i class="material-icons small orange600 hoverable" style="margin-right:10px;">edit</i> <i class="material-icons small orange600 hoverable">delete_forever</i></a></td>
+				          </tr>
+				          <tr>
+				            <td>Alan</td>
+				            <td>Jellybean</td>
+				            <td>$3.76</td>
+				            <td><a href="order.html" title="Modifier"><i class="material-icons small orange600 hoverable" style="margin-right:10px;">edit</i> <i class="material-icons small orange600 hoverable">delete_forever</i></a></td>
+				          </tr>
+				          <tr>
+				            <td>Jonathan</td>
+				            <td>Lollipop</td>
+				            <td>$7.00</td>
+				            <td><a href="order.html" title="Modifier"><i class="material-icons small orange600 hoverable" style="margin-right:10px;">edit</i> <i class="material-icons small orange600 hoverable">delete_forever</i></a></td>
+				          </tr>
+				          <tr style="height: 60px; border-bottom: none">
+				          	<td></td>
+				          	<td></td>
+				            <td>Total</td>
+				            <td>$10.99</td>
+				            
+				          </tr>
+				        </tbody>
+				      </table>
+		        </div>
+
+		        <div class="row">
+		          <a href="order.html" data-target="nav-mobile" class="btn-floating btn-large waves-effect waves-light red left hoverable" title="Ajouter"><i class="material-icons  medium red md-light ">add</i></a>
+		          <a href="#modal1" class="btn-floating btn-large waves-effect waves-light red right hoverable modal-trigger" title="Envoyer commande"><i class="material-icons medium  red md-light">navigate_next</i></a>
+		        </div>
+
+		        <br><br>
+
+<!-- Modal Trigger -->
+  <!-- Modal Trigger -->
+ <!-- Modal Trigger -->
+ 
+		        <br><br>
+
+		        <!-- Modal Structure -->
+				  <div id="modal1" class="modal">
+				    <div class="modal-content">
+				      
+					<div class="row center">
+				          <h6 class="header col s12 red-text">Finaliser la commande</h6>
+				        </div>
+				      <div class="row">
+					    <form class="col s12">
+
+					      <div class="row center">
+					          <div class="input-field col s12 white">
+							    <select>
+							      <option class="white-text" value="" disabled selected>Numero de Table</option>
+							      <option value="1">01</option>
+							      <option value="2">02</option>
+							      <option value="3">03</option>
+							    </select>
+							
+							  </div>
+					        </div>
+
+					      <div class="row center">
+					        <div class="input-field col s12">
+					          <input id="first_name" type="text" class="validate">
+					          <label for="first_name">Votre Nom</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					      	<a href="cart.html" data-target="nav-mobile" class="btn-floating btn-large waves-effect waves-light red left" title="Annuler"><i class="material-icons  medium red md-light">cancel</i></a>
+		          		<a href="bill.html" data-target="nav-mobile" class="btn-floating btn-large waves-effect waves-light red right" title="Ajouter au panier"><i class="material-icons medium  red md-light">send</i></a>
+					      </div>
+					    </form>
+					  </div>
+				    </div>
+				    
+				  </div>
+
+
+		      </div>
+		    </div>
+		    <!-- <div class="parallax"><img src="openBar1.jpg" alt="Unsplashed background img 1"></div> -->
+		</div>
+
+		  <footer class="page-footer brown">
+		    
+		    <div class="footer-copyright">
+		      <div class="container center">
+		      ©  
+		      <script type="text/javascript">document.write(new Date().getFullYear());</script> CTC, All rights reserved.
+		      </div>
+		    </div>
+		  </footer>
+      <!--  Scripts-->
+	  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  <script src="js/materialize.js"></script>
+	  <script src="js/init.js"></script>
+    </body>
+  </html>
