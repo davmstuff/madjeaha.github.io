@@ -1,0 +1,40 @@
+<?php
+include_once('connection.php');
+$sql_request = 
+"Select Panier.id_Panier as Panier_id,
+        Panier.Nom_Client as Client,
+        Produit.nom_Produit as Boisson,
+        Commande.quantite_Produit as Quantite,
+        Format.nom_Format as Format,
+        Prix_par_Format.prix*Commande.quantite_Produit as Prix
+From Panier,Produit,Format,Commande,Contenu_Panier,Prix_par_Format
+Where Panier.id_Panier = Contenu_Panier.id_Panier AND
+      Commande.id_Commande = Contenu_Panier.id_Commande AND
+      Produit.id_Produit = Commande.id_Produit AND
+      Format.id_Format = Commande.id_Format AND
+      Prix_par_Format.id_Produit = Produit.id_Produit";
+
+$stmt = $conn->prepare($sql_request);
+$stmt->execute();
+$orders = $stmt->fetchAll();
+
+$json = array();
+$db_orders = array();
+$shopping_baskets = array();
+$client_order = array();
+foreach ($orders as $order) {
+$Client_name = $order['Client'];
+$Client_basket_id = $order['Panier_id'];
+
+$client_order['Boisson'] = $order['Boisson'];
+$client_order['Quantite'] = $order['Quantite'];
+$client_order['Format'] = $order['Format'];
+$client_order['Prix'] = $order['Prix'];
+//$db_orders["Client"] = $order['Client'];
+//$db_orders["Orders"] = $client_order;
+$shopping_baskets["$Client_name"]["Panier_id"] = $Client_basket_id;
+$shopping_baskets["$Client_name"]["orders"][] = $client_order;
+
+}
+echo json_encode($shopping_baskets);
+?>

@@ -1,0 +1,61 @@
+[Contenu de commande par Panier et par client ]
+Select Panier.Nom_Client as Client,
+       Panier.Heure_creation as Date,
+	   Panier.id_Panier as Panier_id,
+       Tables.nom_table as Nom_Table,
+       Produit.nom_Produit as Boisson,
+       Commande.quantite_Produit as Quantite,
+	   Commande.id_Commande as Commande_id,
+       Format.nom_Format as Format,
+       Panier.statut as Statut,
+       Prix_par_Format.prix*Commande.quantite_Produit as Prix
+From Panier,Produit,Format,Commande,Prix_par_Format,Tables
+Where Panier.id_Panier = Commande.id_Panier AND
+      Panier.statut = 0 AND
+      Panier.id_Table = Tables.id_Table AND
+      Produit.id_Produit = Commande.id_Produit AND
+      Format.id_Format = Commande.id_Format AND
+      Prix_par_Format.id_Produit = Produit.id_Produit
+ORDER By (Panier.Heure_creation) ASC
+	  
+
+[Prix des boissons par format]	  
+	  
+SELECT Produit.nom_Produit AS Boisson, Produit.id_Produit, Format.nom_Format AS Format, Format.id_Format, Prix_par_Format.prix AS Prix, Category.nom_Category AS Categorie
+FROM Produit, Format, Prix_par_Format, Category
+WHERE Prix_par_Format.id_Produit = Produit.id_Produit
+AND Produit.id_Categorie = Category.id_Category
+AND Prix_par_Format.id_Format = Format.id_Format
+
+[Insertion]
+	[Panier]
+	INSERT INTO `u932683326_aha`.`Panier` (`id_Panier`, `id_Table`, `Nom_Client`, `Heure_creation`) VALUES (NULL, "$Customer_table", "$Customer", NOW());
+	$Last_Panier_id = $conn->insert_id;	  
+	
+	[Commande]
+	INSERT INTO `u932683326_aha`.`Commande` (`id_Commande`, `id_Produit`, `quantite_Produit`, `id_Format`) VALUES (NULL, "$Product_id", "$Quantity", "$Format");
+	$CommandesId = array();
+	//stack up commande_ids	 
+	$CommandesId[] = $conn->insert_id;	  
+	
+	[Contenu_commande]
+	//boucle for
+	foreach ($CommandesId as $commandeId)
+	INSERT INTO `u932683326_aha`.`Contenu_Panier` (`id_Panier`, `id_Commande`) VALUES ($Last_Panier_id, $commandeId);
+
+
+[Completer une commande servi au client]	
+	
+[Total de Produit/par format vendu]	produit-format-quantite_vendu-total
+SELECT Produit.nom_Produit AS Produit,
+               Format.nom_Format as Format,
+               SUM(Commande.quantite_Produit) AS Vendu,
+               SUM(Commande.quantite_Produit)*Prix_par_Format.prix AS Total 
+FROM Produit, Format, Commande, Prix_par_Format, Panier 
+WHERE Commande.id_Produit = Produit.id_Produit AND
+              Panier.id_Panier = Commande.id_Panier AND
+			  Panier.statut = 1 AND
+              Commande.id_Format = Format.id_Format AND
+              Prix_par_Format .id_Produit = Produit.id_Produit AND
+              Prix_par_Format .id_Format = Format.id_Format
+GROUP BY (Produit.nom_Produit)

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>Graph de notation des activites.</p>
+<script src="Chart.js"></script>
+
+<canvas id="myChart" width="200" height="50"></canvas>
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["1 etoile", "2 etoiles", "3 etoiles", "4 etoiles", "5 etoiles"],
+        datasets: [{
+            label: "Activite #1",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+            data: [65, 59, 80, 81, 56, 55, 40],
+        },
+		{
+            label: 'Activite #2',
+            data: [12, 10, 7, 8, 5],
+			backgroundColor: "rgba(55,99,232,0.2)",
+            borderColor: "rgba(55,99,232,1)",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(55,99,232,0.4)",
+            hoverBorderColor: "rgba(55,99,232,1)",
+        }
+		]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<p>Graph d evolution du nombre de review dans le temps(pour voir a partir de quels evenements les reviews ont ete publies ).</p>
+
+<canvas id="myChart2" width="200" height="50"></canvas>
+
+<script>
+var ctx2 = document.getElementById("myChart2");
+var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "Activite 1 ",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+        },
+        {
+            label: "Activite 2 ",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(255,0,0,0.4)",
+            borderColor: "rgba(255,0,0,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'bevel',
+            pointBorderColor: "rgba(255,0,0,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255,0,0,1)",
+            pointHoverBorderColor: "rgba(205,0,70,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [75, 50, 90, 51, 36, 25, 10]
+			
+		}
+    ]
+};
+var myLineChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: data
+});
+
+</script>
+<p>Representation des activites les plus cote suivant le nombre de review</p>
+<canvas id="myChart3" width="200" height="50"></canvas>
+<script>
+
+var ctx3 = document.getElementById("myChart3");
+var data2 = {
+    labels: [
+        "Activite #1",
+        "Activite #2",
+    ],
+    datasets: [
+        {
+            data: [300, 50,33],
+            backgroundColor: [
+                "#a5b893",
+                "#4fbe1e",
+				"#141a3a",
+            ],
+            hoverBackgroundColor: [
+                "#a5b893",
+                "#4fbe1e",
+				"#141a3a",
+            ]
+        }]
+};
+
+var myDoughnutChart = new Chart(ctx3, {
+    type: 'doughnut',
+    data: data2
+});
+</script>
+</body>
+</html>
